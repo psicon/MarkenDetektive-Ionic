@@ -1,0 +1,25 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">Volltextuche</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeSearch()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+ <br>
+  <br>
+    <form ng-submit="searchprodukte(suche)" >
+      <div class="list" >
+        <label class="item item-input">
+          <span class="input-label" placeholder="Produktname, Textteil, ...">Suche nach:</span>
+          <input type="text" ng-model="suche.nach">
+        </label>
+       
+        <label class="item">
+          <button class="button button-block button-outline button-stable" type="submit">Suchen</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</div>
+

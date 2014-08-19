@@ -1,0 +1,93 @@
+
+/*@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700"); */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url('../css/fonts/Roboto/2tsd397wLxj96qwHyNIkxHYhjbSpvc47ee6xR_80Hnw.woff2') format('woff2'), url('../css/fonts/Roboto/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff') format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url('../css/fonts/Roboto/Hgo13k-tfSpn0qi1SFdUfZBw1xU1rKptJj_0jans920.woff2') format('woff2'), url('../css/fonts/Roboto/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url('../css/fonts/Roboto/oMMgfZMQthOryQo9n22dcuvvDin1pK8aKteLpeZ5c0A.woff2') format('woff2'), url('../css/fonts/Roboto/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff') format('woff'),
+       url('../css/fonts/Roboto/Roboto-Regular-webfont.ttf') format('truetype');
+
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('../fonts/Roboto/RxZJdnzeo3R5zSexge8UUZBw1xU1rKptJj_0jans920.woff2) format('woff2'), url('../fonts/Roboto/RxZJdnzeo3R5zSexge8UUbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('../fonts/Roboto/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2) format('woff2'), url('../fonts/Roboto/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+.bar-header {
+  top: 0;
+  border-top-width: 0;
+  box-shadow: 0px 2px 0px #b6db49,-0px 2px 20px #444}
+
+.app{	
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+}
+
+
+.listimage 
+{ 
+	max-width:40pt;
+	max-height:40pt;
+	vertical-align:middle;
+	padding-right:10pt;
+	 	}
+
+.listingtext{
+	min-height: 45pt;
+	}
+	
+	 
+	.produktlistimg{
+		max-width:100%;
+		margin:1pt;
+		}
+		
+		.produktdetail{
+		max-width:150pt;
+		max-height:120pt;
+		overflow: hidden;
+	   text-align: center;
+		display:block;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+
+
+		}
+		
+ 	
+ .listimagediv{
+	 float: left; 
+	 margin: 1pt;
+	 	 margin-right: 20pt;
+		 	 margin-top: -4pt;
+	height:30pt;
+	max-width:30pt;
+ 		 }
+	
+	.my-item {
+  left: 0;
+  right: 0;
+}
+	
+	
+	

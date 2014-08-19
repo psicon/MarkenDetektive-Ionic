@@ -1,0 +1,63 @@
+<ion-view title="MarkenDetektive">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+   <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios7-search-strong" ng-click="showsearch()"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+         <div class="card">
+          <div class="item item-divider">
+				Quick Menü		
+          </div>
+            <ion-list>
+              
+                <a class="item item-icon-left" menu-close nav-clear ng-click="showsearch()">
+                <i class="icon ion-ios7-search-strong"></i>
+                    Produkte Suchen
+                </a>
+                <div class="item item-divider">
+                    Schnellscan:
+                </div>
+                <a class="item item-icon-left" menu-close nav-clear ng-click="scanbarcode()">
+                <i class="icon ion-ios7-barcode-outline"></i>
+                    Barcode scannen
+                </a>
+                
+                <div class="item item-divider">
+                    Produkte finden über:
+                </div>
+  				<a class="item item-icon-left" menu-close ng-click="getDiscounterList()">
+                <i class="icon ion-ios7-home"></i>
+                    Discounter
+                </a>
+               <a class="item item-icon-left" menu-close ng-click="getMarkenProdukteList()">
+                <i class="icon ion-trophy"></i>
+                    Markenprodukte
+                </a>
+               <a class="item item-icon-left" menu-close ng-click="getKategorieList()">
+                <i class="icon ion-clipboard"></i>
+                    Produktkategorie
+                </a>
+                <a class="item item-icon-left" menu-close  href="#/app/neuesteprodukte">
+                <i class="icon ion-ios7-lightbulb-outline"></i>
+                    Neueste Produkte
+                </a> 
+              </ion-list>
+      
+        </div>
+        
+        <div class="card">
+          <div class="item item-divider">
+			Einkaufsliste
+          </div>
+          <div class="item item-text-wrap">
+            Deine favorisierten Produkte:
+            <button class="button button-full button-small button-outline button-stable button-icon icon ion-ios7-cart-outline" ng-click="showsearch()"> Zeige alle...</button>
+          </div>
+        
+        </div>
+
+
+   </ion-content>
+</ion-view>
