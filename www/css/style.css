@@ -3864,8 +3864,7 @@ a.subdued {
   .tabs-stable > .tabs .tab-item .badge,
   .tabs.tabs-stable .tab-item .badge {
     background-color: #444444;
-    color: #f8f8f8; }
-
+  }
 .tabs-positive > .tabs,
 .tabs.tabs-positive {
   border-color: #145dd7;
@@ -3901,13 +3900,13 @@ a.subdued {
 
 .tabs-balanced > .tabs,
 .tabs.tabs-balanced {
-  border-color: #478f24;
-  background-color: #66cc33;
-  background-image: linear-gradient(0deg, #478f24, #478f24 50%, transparent 50%);
-  color: white; }
+  border-color: #b6db49;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(0deg, #b6db49, #b6db49 100%, transparent 0%);
+  color: #474646; }
   .tabs-balanced > .tabs .tab-item .badge,
   .tabs.tabs-balanced .tab-item .badge {
-    background-color: white;
+    background-color: #474646;
     color: #66cc33; }
 
 .tabs-energized > .tabs,
@@ -4161,7 +4160,7 @@ a.subdued {
   .tab-item.tab-item-active.tab-item-balanced,
   .tab-item.active.tab-item-balanced,
   .tab-item.activated.tab-item-balanced {
-    color: #66cc33; }
+    color: #b6db49; }
   .tab-item.tab-item-active.tab-item-energized,
   .tab-item.active.tab-item-energized,
   .tab-item.activated.tab-item-energized {

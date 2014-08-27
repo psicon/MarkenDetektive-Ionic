@@ -37,7 +37,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: "/home",
       views: {
         'menuContent' :{
-          templateUrl: "templates/home.html"
+          templateUrl: "templates/home.html",
+		        controller: 'AppCtrl'
+
         }
       }
     })
@@ -163,6 +165,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 	
+	.state('app.wizard0', {
+      url: "/wizard0",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/wizard0.html",
+          controller: 'wizardCtrl'
+        }
+      }
+    })
+	
 	  .state('app.impressum', {
       url: "/impressum",
       views: {
@@ -177,6 +189,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/infos.html"
+		          }
+      }
+    })
+	
+	.state('app.shoppingcart', {
+      url: "/shoppingcart",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/shoppingcart.html",
+		            controller: 'ShoppingCartCtrl'
+
 		          }
       }
     })

@@ -37,7 +37,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: "/home",
       views: {
         'menuContent' :{
-          templateUrl: "templates/home.html"
+          templateUrl: "templates/home.html",
+		        controller: 'AppCtrl'
+
         }
       }
     })
@@ -168,6 +170,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/impressum.html"
+		          }
+      }
+    })
+
+  .state('app.infos', {
+      url: "/infos",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/infos.html"
+		          }
+      }
+    })
+	
+	.state('app.shoppingcart', {
+      url: "/shoppingcart",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/shoppingcart.html",
+		            controller: 'ShoppingCartCtrl'
+
 		          }
       }
     })

@@ -1,0 +1,27 @@
+<ion-view title="Einkaufsliste">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+   <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios7-trash" ng-click="deletecart()"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+         <ion-list class="list">      			      
+		     <ion-item class="listingtext" ng-repeat="cartitem in cartitems" ng-click="getProdukt({{cartitem[0].itemean}})">
+                <span class="item-icon-right">
+					{{cartitem[0].itemname}}<br>
+           		<p style="font-size:13px;" ><b>{{cartitem[0].itemdiscounter}}  |  {{cartitem[0].itempreis}} €</b></p>
+					<i class="icon ion-ios7-arrow-right"></i>
+
+              </span>
+                 <ion-option-button class="button-assertive"
+                             ng-click="deleteitem('{{cartitem[0].itemean}}')">
+            - Löschen -
+          </ion-option-button>
+            </ion-item>
+      </ion-list>
+      
+   </ion-content>
+</ion-view>
+
+

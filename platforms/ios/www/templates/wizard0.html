@@ -1,0 +1,45 @@
+<ion-view title="Produkte erfassen">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+   <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios7-search-strong" ng-click="showsearch()"></button>
+  </ion-nav-buttons
+  ><ion-content class="has-header">
+    <div class="item item-text-wrap"> 
+     <div ng-switch="step" class="animate-switch-container">
+      <div ng-switch-when="1"  class="animate-switch">
+        <p>Hey...</p>        
+			Step 1
+
+<button ng-click="setStep(2)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Ok, los geht's... </button>
+          </div>
+
+       <div ng-switch-when="2" class="animate-switch">
+<div class="    item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-pound placeholder-icon"></i>
+    <input type="search" placeholder="Eintippen oder scannen ...">
+  </label>
+  <button class="button button-clear button-icon icon-left ion-ios7-barcode-outline">
+         </button>
+</div>            <div class="button-bar">
+
+<button ng-click="setStep(1)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-left ion-ios7-rewind-outline">Zurück </button>
+<button ng-click="setStep(3)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Weiter </button>
+			</div>
+      </div>
+
+      <div ng-switch-when="3" class="animate-switch">
+			Step 3
+            <div class="button-bar">
+
+<button ng-click="setStep(2)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-left ion-ios7-rewind-outline">Zurück </button>
+<button ng-click="setStep(4)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Weiter </button>
+			</div>
+      </div>
+ </div>
+          
+     
+  </ion-content>
+</ion-view>

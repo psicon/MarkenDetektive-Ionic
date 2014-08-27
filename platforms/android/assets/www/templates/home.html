@@ -11,22 +11,15 @@
 				Quick Menü		
           </div>
             <ion-list>
-              
-                <a class="item item-icon-left" menu-close nav-clear ng-click="showsearch()">
-                <i class="icon ion-ios7-search-strong"></i>
-                    Produkte Suchen
-                </a>
-                <div class="item item-divider">
-                    Schnellscan:
-                </div>
-                <a class="item item-icon-left" menu-close nav-clear ng-click="scanbarcode()">
+               <a class="item item-icon-left" menu-close nav-clear ng-click="scanbarcode()">
                 <i class="icon ion-ios7-barcode-outline"></i>
                     Barcode scannen
                 </a>
                 
-                <div class="item item-divider">
-                    Produkte finden über:
-                </div>
+                <a class="item item-icon-left" menu-close nav-clear ng-click="showsearch()">
+                <i class="icon ion-ios7-search-strong"></i>
+                    Produkte Suchen
+                </a>
   				<a class="item item-icon-left" menu-close ng-click="getDiscounterList()">
                 <i class="icon ion-ios7-home"></i>
                     Discounter
@@ -34,11 +27,11 @@
                <a class="item item-icon-left" menu-close ng-click="getMarkenProdukteList()">
                 <i class="icon ion-trophy"></i>
                     Markenprodukte
-                </a>
+                </a><!--
                <a class="item item-icon-left" menu-close ng-click="getKategorieList()">
                 <i class="icon ion-clipboard"></i>
                     Produktkategorie
-                </a>
+                </a>-->
                 <a class="item item-icon-left" menu-close  href="#/app/neuesteprodukte">
                 <i class="icon ion-ios7-lightbulb-outline"></i>
                     Neueste Produkte
@@ -49,15 +42,54 @@
         
         <div class="card">
           <div class="item item-divider">
-			Einkaufsliste
+			Deine Einkaufsliste
           </div>
           <div class="item item-text-wrap">
-            Deine favorisierten Produkte:
-            <button class="button button-full button-small button-outline button-stable button-icon icon ion-ios7-cart-outline" ng-click="showsearch()"> Zeige alle...</button>
+<ion-list class="list">      			      
+		     <ion-item class="listingtext" ng-repeat="cartitem in cartitems | slice:0:5" ng-click="getProdukt({{cartitem[0].itemean}})">
+                <span class="item-icon-right">
+					{{cartitem[0].itemname}}<br>
+           		<p style="font-size:13px;" ><b>{{cartitem[0].itemdiscounter}}</b></p>
+					<i class="icon ion-ios7-arrow-right"></i>
+
+              </span>
+                 <ion-option-button class="button-assertive"
+                             ng-click="deleteitem('{{cartitem[0].itemean}}')">
+            - Löschen -
+          </ion-option-button>
+            </ion-item>
+      </ion-list>         <a href="#/app/shoppingcart" style="font-size:14px;" class="button button-full button-small button-outline button-stable button-icon icon ion-ios7-cart-outline"> Zeige alle</a>
           </div>
         
         </div>
 
+        <div class="list card" ng-show="nachrichten.valid">
+        	<div class="item item-avatar" >
+            <img src="http://psicon.de/discountermarken/img/icon.png">
+    		 <h2>News | {{nachrichten.datum}}</h2>
+    <p>Von: {{nachrichten.author}}</p>
+  </div>
+                      
+            <div class="item item-body">
+    <p ng-bind-html="nachrichten.nachricht">
+         {{nachrichten.nachricht}}
+
+    </p>
+     
+  </div>
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" ng-click="sharenewsonfb('Neues von den MarkenDetektiven: ')">
+      <i class="icon ion-share"></i>
+      share 
+    </a>
+    <a class="tab-item" ng-click="openlinkexternal('fb://profile/672772359430969')">
+      <i class="icon ion-social-facebook"></i>
+      find us on facebook
+    </a>
+    
+    
+  </div>
+         </div>
 
    </ion-content>
 </ion-view>

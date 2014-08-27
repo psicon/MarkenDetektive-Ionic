@@ -1,5 +1,69 @@
 angular.module('starter.controllers', [])
 
+.filter('slice', function() {
+  return function(arr, start, end) {
+    return (arr || []).slice(start, end);
+  };
+})
+
+.service('ShoppingCartService', function(){
+	console.log("ShoppingCartService setup");
+	return {
+		alerttest: function(){alert('TEST');},
+		pushCartitem: function(cartitem){
+ 			//alert(cartitem.ean+"");			
+			if(localStorage["cartitems"] == undefined){
+				
+ 				
+				var a = [];
+ 		
+					a.push(cartitem)
+					window.localStorage["cartitems"] = JSON.stringify(a);
+					  //$scope.$apply;
+					console.log("cartitems setted: " + cartitem);
+			}else{
+			var a = [];
+			a = JSON.parse(localStorage["cartitems"]);
+		
+					a.push(cartitem)
+					window.localStorage["cartitems"] = JSON.stringify(a);
+					  //$scope.$apply;
+					console.log("cartitems setted: " + cartitem);}
+			},
+		getCartitems: function(){
+			var storeditems = [];
+			console.log("array in storage: " + localStorage["cartitems"]);
+			if(localStorage["cartitems"] == undefined){}else{
+ 			var storeditems = JSON.parse(localStorage["cartitems"]);
+			console.log("cartitems got: " +  storeditems );}
+			//alert(storeditems[0].itemname + '');
+			
+			return storeditems;
+		},
+		removeAllfromcart: function(){
+				if(localStorage["cartitems"] == undefined){}else{
+
+			a = [];
+			window.localStorage["cartitems"] = JSON.stringify(a);
+			console.log("cart:empty");}
+		},
+		removeCartitem: function(ean){
+			a = JSON.parse(localStorage["cartitems"]);
+   	for(var i =0;i<a.length;i++){
+ 			if(a[i][0]["itemean"] == ean){ 
+ 					 a.splice(i,1);
+					 window.localStorage["cartitems"] =[];
+					 window.localStorage["cartitems"] = JSON.stringify(a);}
+		}
+			
+			
+ 		}
+		
+		}
+	
+	})
+ 
+
 .service('LetterService', function(){
 	console.log("Lertterservice setup");
 	return {
@@ -103,19 +167,160 @@ angular.module('starter.controllers', [])
 		}
 	
 	})
- 
- 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicLoading, $state, $http, $stateParams, $ionicPopup, ProdukteService, SuchService) {
 	
+ .controller('ShoppingCartCtrl', function($scope, $ionicModal, $timeout, $ionicLoading, $state, $http, $stateParams, $ionicPopup, ProdukteService, SuchService,ShoppingCartService) {
+ 							   	//$ionicLoading.show();
+
+  data = ShoppingCartService.getCartitems();
+  $scope.cartitems = data;
+  console.log("cart:");
+ 							   	$ionicLoading.hide();
+
+  console.log(data);
+     // Open the login modal
+	
+  $scope.deletecart = function() {
+	  var confirmPopup = $ionicPopup.confirm({
+     title: '<h4 style="text-align:center;">Fertig eingekauft?</h4>',
+     template: '<p style="text-align:center;"><b>Möchtest du deine Einkaufsliste komplett leeren?</b><br> Tipp: <br>einzelne Punkt kannst du durch zur Seite schieben erledigen!</p>',
+	 buttons: [
+      { text: 'Nein, noch nicht!', type: 'button-assertive' },
+      {
+        text: 'Ja, löschen!',
+        type: 'button-balanced',
+		onTap: function(e) {
+					ShoppingCartService.removeAllfromcart();
+					$scope.$apply();
+			    	$state.go("app.home");
+        }}]
+   });
+		
+
+  }
+  
+     $scope.deleteitem = function(itemean) {
+  		   ShoppingCartService.removeCartitem(itemean);
+			if($state.current.name == "app.shoppingcart")
+					{
+						$state.transitionTo($state.current, $stateParams, {
+							reload: true,
+							inherit: false,
+							notify: true
+						});
+					}
+	   }
+  
+  
+  $scope.getProdukt = function(ean){
+	  		ProdukteService.setProdukt(ean);
+			$ionicLoading.show();
+	    	$state.go("app.produkt");
+	  }
+ 
+	})
+ 
+ 
+ 
+ 
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicLoading, $state, $http, $stateParams, $ionicPopup, ProdukteService, SuchService,ShoppingCartService) {
+	 // Default to ios tab-bar style on android too
+	 
+	 $scope.sharenewsonfb = function(news){
+ 				
+				var confirmPopup = $ionicPopup.confirm({
+     title: '<h4 style="text-align:center;">Teilen?</h4>',
+     template: '<p style="text-align:center;">Möchtest du jetzt  deinen Facebookfreunden von MarkenDetektiven erzählen?</p>',
+	 buttons: [
+      { text: 'Später' },
+      {
+        text: '<b>JA, KLAR SOFORT!</b>',
+        type: 'button-balanced',
+		onTap: function(e) {
+			openFB.login('email,publish_actions',
+            function() {
+          openFB.api(
+				{
+					method: 'POST',
+					path: '/me/feed',
+					params: {
+					message: "Coole App! Holt euch auch die App MarkenDetektive aus dem Appstore! " + news,
+					 link: 'http://www.psicon.de/markendetektive',
+					 application: 'geposted mit der MarkenDetektive App - jetzt im Appstore',
+					 icon: 'http://www.psicon.de/discountermarken/img/icon1616.png'
+					},
+					success: $ionicPopup.alert({
+											 title: 'Erfolgreich ' + data.name,
+											 template: 
+											 '<p style="text-align:center;">Erfolgreich auf facebook gepostet!' +
+											 '</br>Danke :)</p>'
+										   })                
+
+				});},
+            function(error) {
+$ionicPopup.alert({
+											 title: 'Fehler',
+											 template: 
+											 '<p style="text-align:center;">Konnte dich leider nicht bei facebook einloggen!'
+										   });
+										               });
+        }}]
+   });}
+  
+	 
+ data = ShoppingCartService.getCartitems();
+
+var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getnews.php",{timeout:20000});
+                 responsePromise.success(function(data, status, headers, config) {
+	 						 $scope.nachrichten = data;
+ 							 
+							 console.log(data);
+							 $ionicLoading.hide();
+		                 });
+                responsePromise.error(function(data, status, headers, config) {
+							 $ionicLoading.hide();
+
+							
+							
+                });
+	
+	 
+		   $scope.cartitems = data;
 	ionic.Platform.ready(function() {
     // hide the status bar using the StatusBar plugin
     //StatusBar.hide();
+	
+	
+	
+     });
+	 	 
 
-   });
+
+  console.log(data);  
+     $scope.deleteitem = function(itemean) {
+  		   ShoppingCartService.removeCartitem(itemean);
+			if($state.current.name == "app.home")
+					{
+						$state.transitionTo($state.current, $stateParams, {
+							reload: true,
+							inherit: false,
+							notify: true
+						});
+					}
+	   }
+  
+  
+  $scope.getProdukt = function(ean){
+	  		ProdukteService.setProdukt(ean);
+			$ionicLoading.show();
+	    	$state.go("app.produkt");
+	  }
+ 
+	 
    
    $scope.openlinkexternal = function (linkto) { 
 					 $ionicLoading.show();
 					 window.open(linkto,'_system','location=yes');
+					 
 				 	 $ionicLoading.hide();
 }
 
@@ -170,7 +375,8 @@ $ionicPopup.alert({
 										               });
         }}]
    });}
-  
+   
+   
   
   $scope.getDiscounterList = function () { 
   
@@ -317,7 +523,12 @@ $scope.searchprodukte = function(suche) {
       $scope.closeLogin();
     }, 1000);
   };
+  
+ 
+ 
+  
 })
+  
 
 .controller('LoadingCtrl', function($scope, $ionicLoading) {
   $scope.show = function() {
@@ -331,7 +542,8 @@ $scope.searchprodukte = function(suche) {
 })
 
  .controller('getbyletterCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, LetterService) {
- 
+ 							   	$ionicLoading.show();
+
  var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/gethandelsmarken.php?letter=" + LetterService.getLetter(),{timeout:20000});
 
                 responsePromise.success(function(data, status, headers, config) {
@@ -347,6 +559,8 @@ $scope.searchprodukte = function(suche) {
 								 '<p style="text-align:center;">Prüfe deine Internetverbindung!' +
 								 '</br>Vielleicht hast du hier auch keinen Empfang.</p>'
 							   });
+							   							 $ionicLoading.hide();
+
                 });
  
  
@@ -355,9 +569,10 @@ $scope.searchprodukte = function(suche) {
  .controller('openeanCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService) {
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/openean.php?ean=" + ProdukteService.getProdukt(),{timeout:20000});
 	 						 	$scope.openeanprodukte = "";
-   								$scope.myhtml='<i class="icon-left icon ion-loading-d" style="font-size:24px;" ></i><h3 >Suche in externer Datenbank läuft...</h3>';
+   								$scope.myhtml='<i class="icon-left icon ion-loading-d" style="font-size:24px;" ></i><h3 >Suche in Datenbanken läuft...</h3>';
 								$scope.showmyinfo = false;
 								$scope.$apply();
+															 							 $ionicLoading.hide();
                 responsePromise.success(function(data, status, headers, config) {
 							 $ionicLoading.show();
 							 $scope.openeanprodukte = data;
@@ -375,12 +590,8 @@ $scope.searchprodukte = function(suche) {
 						 
                  responsePromise.error(function(data, status, headers, config) {
 							 $ionicLoading.hide();
-							$ionicPopup.alert({
-								 title: 'FEHLER',
-								 template: 
-								 '<p style="text-align:center;">Keine Rückmeldung vom Server!' +
-								 '</br>Versuche es später nochmal.</p>' 
-							   });
+							 $scope.myhtml = '<i class="icon-left icon ion-alert-circled" style="font-size:24px;" ><h3>Keine Antwort vom externen Server. Bitte später erneut versuchen!</h3>';
+  							 
                 });
 				
 				$scope.openlinkext = function () { 
@@ -391,26 +602,14 @@ $scope.searchprodukte = function(suche) {
 				
 				
 				
-				$scope.addtocart = function (task) { 
-				
-				
-				 console.log("selected Produkt:" + task);
-				 $scope.selectedProdukt = task+"";
-				 ProdukteService.setProdukt(task);
 				 
-				 $ionicLoading.show();
-	 
-	 	 		$state.go("app.produkt");
-
-	
-	
- };
   })
  
  
  .controller('getKontrollnummernCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, KontrollnummerntypService) {
 				
-				
+											   	$ionicLoading.show();
+
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getkontrollnummern.php?typ=" + KontrollnummerntypService.getTyp(),{timeout:20000});
 	 						 $scope.openeanprodukte = "";
 
@@ -436,7 +635,8 @@ $scope.searchprodukte = function(suche) {
    })
  
  .controller('getkategorieCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, KategorieService) {
- 
+ 							   	$ionicLoading.show();
+
   var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getkategorien.php",{timeout:20000});
 
                 responsePromise.success(function(data, status, headers, config) {
@@ -473,7 +673,8 @@ $scope.searchprodukte = function(suche) {
  })
  
  .controller('getdiscounterCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, DiscounterService) {
- 
+ 							   	$ionicLoading.show();
+
   var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getdiscounter.php",{timeout:20000});
 
                 responsePromise.success(function(data, status, headers, config) {
@@ -510,7 +711,8 @@ $scope.searchprodukte = function(suche) {
  })
 
 .controller('getProduktebydiscounterCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService, DiscounterService) {
- 
+ 							   	$ionicLoading.show();
+
   
   
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getprodukte_bydiscounter.php?discounterid=" + DiscounterService.getDiscounter(),{timeout:20000});
@@ -551,7 +753,8 @@ $scope.searchprodukte = function(suche) {
  
  .controller('getNeuesteprodukteCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService) {
  
-  
+  							   	$ionicLoading.show();
+
   
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getneuesteprodukte.php",{timeout:20000});
 
@@ -592,7 +795,8 @@ $scope.searchprodukte = function(suche) {
  
 
 .controller('getProduktebykategorieCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService, KategorieService) {
- 
+ 							   	$ionicLoading.show();
+
   
   
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getprodukte_bykategorie.php?kategorie=" + KategorieService.getKategorie(),{timeout:19000});
@@ -633,7 +837,8 @@ $scope.searchprodukte = function(suche) {
 
 
 .controller('getProduktebysearchCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService, SuchService) {
-   
+   							   	$ionicLoading.show();
+
   
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getprodukte_bysearch.php?ean=" + SuchService.getSuchbegriff(),{timeout:12000});
 
@@ -660,7 +865,7 @@ console.log("Suchlink: http://psicon.de/discountermarken/ionic/php/getprodukte_b
 				 $scope.selectedProdukt = task+"";
 				 ProdukteService.setProdukt(task);
 				 
-	 
+				 $ionicLoading.show();
 	 	 		$state.go("app.produkt");
 
 	
@@ -671,10 +876,16 @@ console.log("Suchlink: http://psicon.de/discountermarken/ionic/php/getprodukte_b
  
  })
 
-.controller('getProduktCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService, DiscounterService) {
+   
+.controller('getProduktCtrl', function($scope, $http, $ionicLoading, $state,$ionicPopup, ProdukteService, DiscounterService,ShoppingCartService) {
  
+							   	$ionicLoading.show();
 
-  
+  $scope.openlinkext = function () { 
+ 					 window.open('http://www.amazon.de/gp/search?ie=UTF8&camp=1638&creative=6742&index=aps&keywords=' + ProdukteService.getProdukt()  + '&linkCode=ur2&tag=wwwpsiconde-21','_system','location=yes');
+	
+	
+ };
   
 				var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/getprodukte_byean.php?ean=" + ProdukteService.getProdukt(),{timeout:20000});
 
@@ -692,22 +903,25 @@ console.log("Suchlink: http://psicon.de/discountermarken/ionic/php/getprodukte_b
 								 '<p style="text-align:center;">Prüfe deine Internetverbindung!' +
 								 '</br>Vielleicht hast du hier auch keinen Empfang.</p>'
 							   });
+							   	$ionicLoading.hide();
+
                 });
 				
-				$scope.addtocart = function (task) { 
-				
-				
-				 console.log("selected Produkt:" + task);
-				 $scope.selectedProdukt = task+"";
-				 ProdukteService.setProdukt(task);
-				 
-				 $ionicLoading.show();
-	 
-	 	 		$state.go("app.produkt");
-
-	
-	
- };
+				 $scope.addtocart = function(name, discounter, ean,preis){
+				  //alert('Trying to add: ' + name + ' d: ' + discounter + 'ean: ' + ean);
+				  var cartitems = [    			{ 	itemname: name, 
+				  									itemdiscounter: discounter, 	
+													itemean: ean,
+													itempreis: preis
+													}   
+   								];
+ 
+ 				$ionicPopup.alert({
+								 title: name + '',
+								 template: 
+								 '<p style="text-align:center;">wurde erfolgreich zu deiner Einkaufsliste hinzugefügt!</p>'
+							   }); 				 ShoppingCartService.pushCartitem(cartitems);
+				  };
  
   $scope.shareonfb = function(posting, img1, img2){
 
@@ -753,14 +967,15 @@ $ionicPopup.alert({
    
 				
 				
-				
+			 
+	
             
 	 
 	  };
   
 
  
- 
+  
  
  })
 

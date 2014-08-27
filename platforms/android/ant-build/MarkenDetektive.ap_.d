@@ -146,7 +146,10 @@
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/css/fonts/Roboto/RxZJdnzeo3R5zSexge8UUbO3LdcAZYWl9Si6vvxL-qU.woff \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/css/fonts/Roboto/RxZJdnzeo3R5zSexge8UUZBw1xU1rKptJj_0jans920.woff2 \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/css/fonts/Roboto/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/img/bildadresse.jpg \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/img/erzeugercode.gif \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/img/ionic.png \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/img/kontrollnummer.png \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/js/app.js \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/js/controllers.js \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/js/openfb.js \
@@ -327,6 +330,7 @@
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getkontrollnummern.php \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getmarkenprodukte.php \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getneuesteprodukte.php \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getnews.php \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getprodukte_bydiscounter.php \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getprodukte_byean.php \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/php/getprodukte_bykategorie.php \
@@ -352,6 +356,7 @@
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/handelsmarken.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/home.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/impressum.html \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/infos.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/kategorieauswahl.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/kontrollnummern.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/kontrollnummernauswahl.html \
@@ -367,5 +372,6 @@
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/produktebysearch.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/produktopenean.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/share.html \
+/Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/shoppingcart.html \
 /Users/psiconappleid/markendetektive/platforms/android/assets/www/templates/suche.html \
 /Users/psiconappleid/markendetektive/platforms/android/ant-build/AndroidManifest.xml \
