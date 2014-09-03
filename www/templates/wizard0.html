@@ -9,13 +9,36 @@
     <div class="item item-text-wrap"> 
      <div ng-switch="step" class="animate-switch-container">
       <div ng-switch-when="1"  class="animate-switch">
-        <p>Hey...</p>        
-			Step 1
+        <p>Wir finden es wirklich super, dass du dein Wissen mit uns und der Community teilen möchtest.<br>Wir haben die folgenden Schritte deshalb auch so einfach wie möglich gestaltet.<br><br><b>Bitte beachte jedoch folgende Dinge: </b>       
+Dein Produkt wird nach der Erfassung in der "Nicht bestätigte Produkte" Liste aufgeführt. Hier kann jeder registrierte Nutzer abstimmen ob die von dir angegebenen Produktdaten korrekt sind. Erst wenn "dein" Produkt hier eine Bestätigungsrate von 100% erreicht, wird es automatisch in die offizielle Markendetektive Datenbank übernommen.</p>
+
 
 <button ng-click="setStep(2)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Ok, los geht's... </button>
           </div>
 
-       <div ng-switch-when="2" class="animate-switch">
+
+
+<div ng-switch-when="2" class="animate-switch">
+   <p>Wenn du ein Markenprodukt und ein passendes oder mehrere passende Discounterprodukte kennst wähle:</p>
+                    <button class="button button-block icon-left ion-ios7-star button-stable">
+                  	 Produktpaar
+                    </button>
+                    <br>
+                    <p>Wenn du ein einzelnes Marken- oder Discounterprodukt erfassen möchtest wähle:
+                    <button ng-click="setStep(3)" class="button button-block icon-left ion-ios7-star-half button-energized button-outline">
+                  	 Einzelprodukt
+                    </button>
+ <div class="button-bar">
+
+
+
+			</div>
+      </div>
+
+
+
+
+       <div ng-switch-when="4" class="animate-switch">
 <div class="    item-input-inset">
   <label class="item-input-wrapper">
     <i class="icon ion-pound placeholder-icon"></i>
@@ -25,12 +48,12 @@
          </button>
 </div>            <div class="button-bar">
 
-<button ng-click="setStep(1)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-left ion-ios7-rewind-outline">Zurück </button>
-<button ng-click="setStep(3)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Weiter </button>
+<button ng-click="setStep(2)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-left ion-ios7-rewind-outline">Zurück </button>
+<button ng-click="setStep(4)" style="font-size:20px; text-align:center;" class="button button-full button button-outline button-stable button-icon icon-right ion-ios7-fastforward-outline">Weiter </button>
 			</div>
       </div>
 
-      <div ng-switch-when="3" class="animate-switch">
+      <div ng-switch-when="5" class="animate-switch">
 			Step 3
             <div class="button-bar">
 

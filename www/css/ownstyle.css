@@ -143,7 +143,7 @@ top: 10pt;
 }
 	.animate-switch-container {
   position:relative;
-   height:200pt;
+   height:330pt;
   overflow:hidden;
 }
 
@@ -163,7 +163,7 @@ top: 10pt;
 
 .animate-switch.ng-leave.ng-leave-active,
 .animate-switch.ng-enter {
-  top:-250px;
+  top:-550px;
 }
 .animate-switch.ng-leave,
 .animate-switch.ng-enter.ng-enter-active {

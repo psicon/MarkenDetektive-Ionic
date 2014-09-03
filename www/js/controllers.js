@@ -231,9 +231,13 @@ angular.module('starter.controllers', [])
  
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicLoading, $state, $http, $stateParams, $ionicPopup, ProdukteService, SuchService,ShoppingCartService) {
 	 // Default to ios tab-bar style on android too
-	 
-	 $scope.sharenewsonfb = function(news){
- 				
+	  function errorHandler(error) {
+        alert(error.message);
+    }
+
+	 $scope.sharenewsonfb = function(news){		
+				
+				
 				var confirmPopup = $ionicPopup.confirm({
      title: '<h4 style="text-align:center;">Teilen?</h4>',
      template: '<p style="text-align:center;">Möchtest du jetzt  deinen Facebookfreunden von MarkenDetektiven erzählen?</p>',
@@ -243,7 +247,7 @@ angular.module('starter.controllers', [])
         text: '<b>JA, KLAR SOFORT!</b>',
         type: 'button-balanced',
 		onTap: function(e) {
-			openFB.login('email,publish_actions',
+			openFB.login('email,publish_actions, public_profile',
             function() {
           openFB.api(
 				{
@@ -256,13 +260,15 @@ angular.module('starter.controllers', [])
 					 icon: 'http://www.psicon.de/discountermarken/img/icon1616.png'
 					},
 					success: $ionicPopup.alert({
-											 title: 'Erfolgreich ' + data.name,
+											 title: 'Erfolgreich!',
 											 template: 
 											 '<p style="text-align:center;">Erfolgreich auf facebook gepostet!' +
 											 '</br>Danke :)</p>'
-										   })                
+										   })            
 
-				});},
+				})
+				
+				},
             function(error) {
 $ionicPopup.alert({
 											 title: 'Fehler',
@@ -272,6 +278,20 @@ $ionicPopup.alert({
 										               });
         }}]
    });}
+  
+  
+  
+	 $scope.getfbname = function(){		
+			openFB.api({
+            path: '/me',
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                alert(data.name);
+             },
+            error: errorHandler});
+			
+			
+													   }
   
 	 
  data = ShoppingCartService.getCartitems();
@@ -332,7 +352,7 @@ var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/get
 }
 
   $scope.login = function() {
-        openFB.login('email,publish_actions',
+			openFB.login('email,publish_actions, public_profile',
             function() {
                 //alert('Facebook login succeeded');
 				 
@@ -354,7 +374,7 @@ var responsePromise = $http.get("http://psicon.de/discountermarken/ionic/php/get
         text: '<b>JA, KLAR SOFORT!</b>',
         type: 'button-balanced',
 		onTap: function(e) {
-			openFB.login('email,publish_actions',
+			openFB.login('email,publish_actions, public_profile',
             function() {
           openFB.api(
 				{
@@ -942,7 +962,7 @@ console.log("Suchlink: http://psicon.de/discountermarken/ionic/php/getprodukte_b
         text: '<b>JA, KLAR SOFORT!</b>',
         type: 'button-balanced',
 		onTap: function(e) {
-			openFB.login('email,publish_actions',
+			openFB.login('email,publish_actions, public_profile',
             function() {
           openFB.api(
 				{
